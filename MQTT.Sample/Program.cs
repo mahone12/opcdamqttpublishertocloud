@@ -50,8 +50,8 @@ namespace MQTT.Sample
                
                
                    
-                    Global.opclist.Add(new MQTTMessages("Pressure1", 0.0));
-                     Global.opclist.Add(new MQTTMessages("Pressure2", 0.0));
+                    Global.opclist.Add(new MQTTMessages("Pressure1", 0.0,DateTime.Now));
+                     Global.opclist.Add(new MQTTMessages("Pressure2", 0.0, DateTime.Now));
 
             }
 

@@ -86,9 +86,16 @@ namespace MQTT.Sample
                 })]
               .TagValue = System.Convert.ToInt32(values[i].Value);
 
+
+                Global.opclist[Global.opclist.FindIndex(delegate (MQTTMessages mqttMessages)
+                {
+                    return mqttMessages.TagName == values[i].ItemName.Substring(14, 9);
+                })]
+              .timesStamps = values[i].Timestamp;
+
                 //Console.WriteLine("hit");
 
-               // var message = Newtonsoft.Json.JsonConvert.SerializeObject(new MQTTMessages(values[i].ItemName.Substring(14, 9), (float)values[i].Value));
+                // var message = Newtonsoft.Json.JsonConvert.SerializeObject(new MQTTMessages(values[i].ItemName.Substring(14, 9), (float)values[i].Value));
                 var pressure = Newtonsoft.Json.JsonConvert.SerializeObject(Global.opclist);
                 var pressure1 = Newtonsoft.Json.JsonConvert.SerializeObject(Global.opclist[0]);
 
@@ -96,7 +103,7 @@ namespace MQTT.Sample
                 {
                     Thread.Sleep(5000);
 
-                    Program.mclient.Publish(Program.topic_pressure, Encoding.UTF8.GetBytes(pressure));
+                    //Program.mclient.Publish(Program.topic_pressure, Encoding.UTF8.GetBytes(pressure));
                     Program.mclient.Publish(Program.topic_Pressure1, Encoding.UTF8.GetBytes(pressure1));
                     Console.WriteLine(pressure);
                     //Console.ReadLine();
